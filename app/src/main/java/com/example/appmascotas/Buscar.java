@@ -28,7 +28,7 @@ import org.json.JSONObject;
 public class Buscar extends AppCompatActivity {
     EditText edtIdBuscado, edtNombre, edtTipo, edtRaza, edtColor, edtPeso, edtGenero;
     Button btnBuscarMascota, btnActualizarMascota, btnEliminarMascota;
-    private final String URL = "http://192.168.101.31:3000/vehiculos/"; //Constante
+    private final String URL = "http://192.168.101.31:3000/mascotas/"; //Constante
     RequestQueue requestQueue;
 
     private void loadUI() {
