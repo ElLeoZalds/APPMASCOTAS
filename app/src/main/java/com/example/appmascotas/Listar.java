@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class Listar extends AppCompatActivity {
     ListView lstMascotas;
-    private final String URL = "http://192.168.1.103:3000/mascotas";
+    private final String URL = "http://192.168.1.31:3000/mascotas";
     RequestQueue requestQueue;
     private void loadUI() {
         lstMascotas = findViewById(R.id.lstMascotas);

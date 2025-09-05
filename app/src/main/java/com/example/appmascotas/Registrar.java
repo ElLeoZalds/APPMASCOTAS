@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class Registrar extends AppCompatActivity {
     EditText edtNombre, edtTipo, edtRaza, edtColor, edtPeso, edtGenero;
     Button btnGuardar;
-    private final String URL = "http://192.168.1.103:3000/mascotas";
+    private final String URL = "http://192.168.1.31:3000/mascotas";
     RequestQueue requestQueue;
     private void loadUI() {
         edtNombre = findViewById(R.id.edtNombre);
