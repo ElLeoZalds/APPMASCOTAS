@@ -1,5 +1,6 @@
 package com.example.appmascotas;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -44,7 +46,7 @@ public class Registrar extends AppCompatActivity {
         setContentView(R.layout.activity_registrar);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            //v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
@@ -53,10 +55,75 @@ public class Registrar extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //sendDataWS();
+                if (formIsReady()) {
+                    showConfirmSave();
+                }else{
+                    edtNombre.requestFocus();
+                }
+            }
+        });
+    } //onCreate
+
+    /**
+     * Evalua si una caja de Texto contiene datos, se requiere un mensaje de error personalizado
+     * @param editText
+     * @param message
+     * @return
+     */
+    private boolean editTextValidate(EditText editText, String message){
+        if (editText.getText().toString().trim().isEmpty()){
+            editText.setError(message);
+            editText.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Evalua si una caja de texto contiene datos
+     * @param editText
+     * @return
+     */
+    private boolean editTextValidate(EditText editText){
+        if (editText.getText().toString().trim().isEmpty()){
+            editText.setError("Obligatorio");
+            editText.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    private boolean formIsReady() {
+        if (    !editTextValidate(edtNombre) ||
+                !editTextValidate(edtTipo) ||
+                !editTextValidate(edtRaza) ||
+                !editTextValidate(edtColor) ||
+                !editTextValidate(edtPeso) ||
+                !editTextValidate(edtGenero)) {
+            return false;
+        }
+        return true;
+    }
+
+    private void showConfirmSave(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Registro de Mascotas");
+        dialog.setMessage("¿Esta seguro de registrar la Mascota?");
+        dialog.setCancelable(false);
+        dialog.setNegativeButton("Cancelal", null);
+        dialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 sendDataWS();
             }
         });
+        dialog.show();
     }
+
+
+
+
+
     private void sendDataWS() {
         requestQueue = Volley.newRequestQueue(this);
         JSONObject jsonObject = new JSONObject();
