@@ -42,6 +42,3 @@ Aplicación Android para gestionar mascotas, con funcionalidades para buscar, li
 1. Importar el proyecto en Android Studio.
 2. Construir y ejecutar la app en un emulador o dispositivo físico.
 
----
-
-Proyecto simple para gestión de mascotas con interfaz gráfica basada en actividades Android.
