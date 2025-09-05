@@ -113,7 +113,7 @@ public class Buscar extends AppCompatActivity {
                             //Log.e("Error WS", volleyError.toString());
                             formClear();
                             edtIdBuscado.requestFocus();
-                            Toast.makeText(getApplicationContext(), "No existe el Vehiculo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "No existe la Mascota", Toast.LENGTH_SHORT).show();
                         }
                     }
             );
